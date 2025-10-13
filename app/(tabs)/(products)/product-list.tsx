@@ -6,7 +6,6 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 export default function ProductListScreen() {
   const { data, isLoading, error } = useProducts();
   const { favorites, toggleFavorite, isFavorite } = useFavoritesStore();
-  console.log(data);
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <FlatList
