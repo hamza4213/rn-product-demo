@@ -1,4 +1,6 @@
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { AxiosProvider } from "@/src/api/axios-provider";
+import { QueryProvider } from "@/src/providers/query-provider";
 import {
   DarkTheme,
   DefaultTheme,
@@ -17,16 +19,22 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="modal"
-          options={{ presentation: "modal", title: "Modal" }}
-        />
-        <Stack.Screen name="(screens)" options={{ title: "Products" }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <AxiosProvider>
+      <QueryProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="modal"
+              options={{ presentation: "modal", title: "Modal" }}
+            />
+            <Stack.Screen name="(screens)" options={{ title: "Products" }} />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </QueryProvider>
+    </AxiosProvider>
   );
 }
