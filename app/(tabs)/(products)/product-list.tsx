@@ -1,16 +1,17 @@
+import { useProducts } from "@/src/api/hooks/useProducts";
+import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { Link } from "expo-router";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 
 export default function ProductListScreen() {
-  const products = [
-    { id: 1, title: "Product 1", image: "https://via.placeholder.com/150" },
-    { id: 2, title: "Product 2", image: "https://via.placeholder.com/150" },
-  ];
-
+  const { data, isLoading, error } = useProducts();
+  const { favorites, toggleFavorite, isFavorite } = useFavoritesStore();
+  console.log(data);
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <FlatList
-        data={products}
+        showsVerticalScrollIndicator={false}
+        data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Link href={`/productDetails`} asChild>
