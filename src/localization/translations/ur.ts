@@ -3,6 +3,7 @@ const ur = {
     ok: "ٹھیک ہے!",
     cancel: "منسوخ کریں",
     back: "واپس جائیں",
+    settings: "ترتیبات",
   },
   welcomeScreen: {
     postscript:
