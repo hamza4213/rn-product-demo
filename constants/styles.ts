@@ -8,11 +8,11 @@ export const img: ImageStyle = {
 };
 export const favoriteButton: ViewStyle = {
   position: "absolute",
-  top: 10,
-  right: 10,
-  borderRadius: 20,
-  width: 36,
-  height: 36,
+  top: spacing.sm,
+  right: spacing.sm,
+  borderRadius: spacing.xlg,
+  width: spacing.xxxl,
+  height: spacing.xxxl,
   justifyContent: "center",
   alignItems: "center",
 };
