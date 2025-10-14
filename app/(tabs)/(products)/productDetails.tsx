@@ -15,6 +15,8 @@ import {
 export default function ProductDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { data: product, isLoading, error } = useProductDetail(id!);
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const favorite = favorites.includes(Number(id));
   const text = useThemeColor({}, "text");
   const background = useThemeColor({}, "card");
   const secondary = useThemeColor({}, "textSecondary");
@@ -69,7 +71,7 @@ export default function ProductDetailScreen() {
         >
           <Text
             style={{
-              color: isFavorite(product?.id!) ? "#ff6b6b" : "#333",
+              color: favorite ? favoriteActive : favoriteInactive,
               fontSize: 20,
             }}
           >
@@ -106,7 +108,9 @@ export default function ProductDetailScreen() {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ fontSize: 16 }}>⭐ {product?.rating.rate} / 5</Text>
+        <Text style={{ fontSize: 16, color: secondary }}>
+          ⭐ {product?.rating.rate} / 5
+        </Text>
         <Text style={{ fontSize: 14, color: secondary }}>
           ({product?.rating.count} reviews)
         </Text>
