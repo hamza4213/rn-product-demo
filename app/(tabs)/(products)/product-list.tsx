@@ -1,8 +1,10 @@
 import { ProductCard } from "@/components/ProductCard";
+import { spacing } from "@/constants/spacing";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 export default function ProductListScreen() {
@@ -10,6 +12,7 @@ export default function ProductListScreen() {
   const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
   const backgroundColor = useThemeColor({}, "background");
   const textColor = useThemeColor({}, "text");
+  const { t } = useTranslation();
   useEffect(() => {
     loadFavorites();
   }, []);
@@ -23,12 +26,12 @@ export default function ProductListScreen() {
   if (error) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: textColor }}>Error loading products list.</Text>
+        <Text style={{ color: textColor }}>{t("product:errorlist")}</Text>
       </View>
     );
   }
   return (
-    <View style={{ flex: 1, padding: 16 }}>
+    <View style={{ flex: 1, padding: spacing.lg }}>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={data}

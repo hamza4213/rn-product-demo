@@ -35,6 +35,7 @@ const ur = {
     addToCart: "کارٹ میں شامل کریں",
     price: "قیمت",
     products: "مصنوعات",
+    errorlist: "مصنوعات کی فہرست لوڈ کرنے میں خرابی۔",
   },
   settings: {
     title: "ترتیبات",

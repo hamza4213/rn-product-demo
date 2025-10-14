@@ -35,6 +35,7 @@ const en = {
     addToCart: "Add to Cart",
     price: "Price",
     products: "Products",
+    errorlist: "Error loading products list.",
   },
   settings: {
     title: "Settings",
