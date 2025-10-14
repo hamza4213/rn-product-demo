@@ -1,9 +1,8 @@
 import { ProductCard } from "@/components/ProductCard";
 import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
-import { Link } from "expo-router";
 import { useEffect } from "react";
-import { FlatList, TouchableOpacity, View } from "react-native";
+import { FlatList, View } from "react-native";
 
 export default function ProductListScreen() {
   const { data, isLoading, error } = useProducts();
@@ -18,13 +17,7 @@ export default function ProductListScreen() {
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <Link href={`/productDetails`} asChild>
-            <TouchableOpacity style={{ marginBottom: 16 }}>
-              <ProductCard item={item} />
-            </TouchableOpacity>
-          </Link>
-        )}
+        renderItem={({ item }) => <ProductCard item={item} />}
       />
     </View>
   );
