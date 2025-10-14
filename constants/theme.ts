@@ -26,6 +26,7 @@ export const Colors = {
     favoriteButtonBg: "rgba(255,255,255,0.9)",
     price: "#2e7d32",
     primary: "#007AFF",
+    shadowColor: "#000",
   },
   dark: {
     text: "#ECEDEE",
@@ -44,6 +45,7 @@ export const Colors = {
     primary: "#0A84FF",
     favoriteButtonBg: "rgba(0,0,0,0.7)",
     price: "#81c784",
+    shadowColor: "#fff",
   },
 };
 
