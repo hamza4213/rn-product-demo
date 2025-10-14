@@ -1,5 +1,5 @@
 import { spacing } from "@/constants/spacing";
-import { favoriteButton, favoriteText, img } from "@/constants/styles";
+import { favoriteButton, favoriteText, img, title } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -74,14 +74,7 @@ export default function ProductDetailScreen() {
         </TouchableOpacity>
       </View>
 
-      <Text
-        style={{
-          fontSize: spacing.xl,
-          fontWeight: "bold",
-          marginBottom: spacing.xl,
-          color: text,
-        }}
-      >
+      <Text style={[title, { color: text, fontSize: spacing.xlg }]}>
         {product?.title}
       </Text>
       <Text style={{ fontSize: spacing.xlg, color: price, marginBottom: 8 }}>

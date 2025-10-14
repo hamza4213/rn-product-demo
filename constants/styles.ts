@@ -19,3 +19,7 @@ export const favoriteButton: ViewStyle = {
 export const favoriteText: TextStyle = {
   fontSize: spacing.lg,
 };
+export const title: TextStyle = {
+  fontSize: spacing.lg,
+  fontWeight: "600",
+};

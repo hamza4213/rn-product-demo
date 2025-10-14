@@ -1,4 +1,4 @@
-import { favoriteButton, favoriteText, img } from "@/constants/styles";
+import { favoriteButton, favoriteText, img, title } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { Product } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -25,7 +25,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
             resizeMode="contain"
           />
 
-          <Text style={[styles.title, { color: text }]} numberOfLines={1}>
+          <Text style={[title, { color: text }]} numberOfLines={1}>
             {item.title}
           </Text>
 
@@ -78,10 +78,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 3,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "600",
   },
   category: {
     fontSize: 13,
