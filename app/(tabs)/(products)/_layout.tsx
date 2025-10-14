@@ -1,10 +1,9 @@
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemeColors } from "@/hooks/use-theme-color";
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 
 export default function RootLayout() {
-  const primary = useThemeColor({}, "primary");
-  const background = useThemeColor({}, "background");
+  const { background, primary } = useThemeColors();
   const { t } = useTranslation();
 
   return (

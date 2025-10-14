@@ -10,7 +10,7 @@ import {
   row,
   title,
 } from "@/constants/styles";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemeColors } from "@/hooks/use-theme-color";
 import { Product } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { Link } from "expo-router";
@@ -28,12 +28,14 @@ export const ProductCard = ({ item }: { item: Product }) => {
   const favorites = useFavoritesStore((state) => state.favorites);
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
   const favorite = favorites.includes(item.id);
-  const background = useThemeColor({}, "card");
-  const text = useThemeColor({}, "text");
-  const secondary = useThemeColor({}, "textSecondary");
-  const favoriteActive = useThemeColor({}, "favoriteActive");
-  const favoriteInactive = useThemeColor({}, "favoriteInactive");
-  const shadowColor = useThemeColor({}, "shadowColor");
+  const {
+    shadowColor,
+    favoriteActive,
+    favoriteInactive,
+    secondary,
+    background,
+    text,
+  } = useThemeColors();
   return (
     <Link href={`/productDetails?id=${item.id}`} asChild>
       <Pressable style={{ marginBottom: spacing.lg }}>

@@ -1,3 +1,4 @@
+import { spacing } from "@/constants/spacing";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -18,7 +19,7 @@ const Error = (props: props) => {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: 20,
+        paddingHorizontal: spacing.xlg,
       }}
     >
       <Text
@@ -29,23 +30,23 @@ const Error = (props: props) => {
           textAlign: "center",
         }}
       >
-        {text}{" "}
+        {text}
       </Text>
 
       <TouchableOpacity
         onPress={onRetry}
         style={{
           backgroundColor: backgroundColor,
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-          borderRadius: 8,
+          paddingHorizontal: spacing.xlg,
+          paddingVertical: spacing.sm,
+          borderRadius: spacing.sm,
         }}
       >
         <Text
           style={{
             color: textColor,
             fontWeight: "bold",
-            fontSize: 16,
+            fontSize: spacing.lg,
           }}
         >
           {t("common:retry")}

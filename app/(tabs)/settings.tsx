@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { spacing } from "@/constants/spacing";
 import { row } from "@/constants/styles";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemeColors } from "@/hooks/use-theme-color";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "i18next";
 import React, { useEffect, useState } from "react";
@@ -24,9 +24,7 @@ export default function SettingsScreen() {
   const [language, setLanguage] = useState(
     i18n.language.startsWith("ur") ? "ur" : "en"
   );
-
-  const backgroundColor = useThemeColor({}, "background");
-  const textColor = useThemeColor({}, "text");
+  const { background, text } = useThemeColors();
 
   useEffect(() => {
     Appearance.setColorScheme(theme);
@@ -44,15 +42,13 @@ export default function SettingsScreen() {
   };
 
   return (
-    <ThemedView style={[styles.container, { backgroundColor }]}>
-      <ThemedText type="title" style={[styles.header, { color: textColor }]}>
+    <ThemedView style={[styles.container, { backgroundColor: background }]}>
+      <ThemedText type="title" style={[styles.header, { color: text }]}>
         {t("settings:title")}
       </ThemedText>
 
       <View style={row}>
-        <Text style={[styles.label, { color: textColor }]}>
-          {t("common:theme")}
-        </Text>
+        <Text style={[styles.label, { color: text }]}>{t("common:theme")}</Text>
         <Switch
           value={theme === "dark"}
           onValueChange={toggleTheme}
@@ -62,10 +58,10 @@ export default function SettingsScreen() {
       </View>
 
       <TouchableOpacity style={row} onPress={toggleLanguage}>
-        <Text style={[styles.label, { color: textColor }]}>
+        <Text style={[styles.label, { color: text }]}>
           {t("common:language")}
         </Text>
-        <Text style={[styles.value, { color: textColor }]}>
+        <Text style={[styles.value, { color: text }]}>
           {language === "en" ? "English" : "اردو"}
         </Text>
       </TouchableOpacity>

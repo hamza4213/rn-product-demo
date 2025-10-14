@@ -11,7 +11,7 @@ import {
   row,
   title,
 } from "@/constants/styles";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemeColors } from "@/hooks/use-theme-color";
 import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { useLocalSearchParams } from "expo-router";
@@ -31,12 +31,14 @@ export default function ProductDetailScreen() {
   const { data: product, isLoading, error, refetch } = useProductDetail(id!);
   const favorites = useFavoritesStore((state) => state.favorites);
   const favorite = favorites.includes(Number(id));
-  const text = useThemeColor({}, "text");
-  const background = useThemeColor({}, "card");
-  const secondary = useThemeColor({}, "textSecondary");
-  const favoriteActive = useThemeColor({}, "favoriteActive");
-  const favoriteInactive = useThemeColor({}, "favoriteInactive");
-  const price = useThemeColor({}, "price");
+  const {
+    price,
+    favoriteActive,
+    favoriteInactive,
+    secondary,
+    background,
+    text,
+  } = useThemeColors();
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
   const isFavorite = useFavoritesStore((state) => state.isFavorite);
   const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
