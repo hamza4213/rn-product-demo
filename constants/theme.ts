@@ -23,6 +23,7 @@ export const Colors = {
     success: "#34C759",
     favoriteActive: "#FF6B81",
     favoriteInactive: "#E5E5E5",
+    primary: "#007AFF",
   },
   dark: {
     text: "#ECEDEE",
@@ -38,6 +39,7 @@ export const Colors = {
     success: "#30D158",
     favoriteActive: "#FF6B81",
     favoriteInactive: "#333333",
+    primary: "#0A84FF",
   },
 };
 
