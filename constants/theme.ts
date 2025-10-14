@@ -23,6 +23,8 @@ export const Colors = {
     success: "#34C759",
     favoriteActive: "#FF6B81",
     favoriteInactive: "#E5E5E5",
+    favoriteButtonBg: "rgba(255,255,255,0.9)",
+    price: "#2e7d32",
     primary: "#007AFF",
   },
   dark: {
@@ -40,6 +42,8 @@ export const Colors = {
     favoriteActive: "#FF6B81",
     favoriteInactive: "#333333",
     primary: "#0A84FF",
+    favoriteButtonBg: "rgba(255,255,255,0.9)",
+    price: "#81c784",
   },
 };
 

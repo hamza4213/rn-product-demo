@@ -1,3 +1,4 @@
+import { spacing } from "@/constants/spacing";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -23,6 +24,8 @@ export default function ProductDetailScreen() {
   const secondary = useThemeColor({}, "textSecondary");
   const favoriteActive = useThemeColor({}, "favoriteActive");
   const favoriteInactive = useThemeColor({}, "favoriteInactive");
+  const favoriteBG = useThemeColor({}, "favoriteButtonBg");
+  const price = useThemeColor({}, "price");
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
   const isFavorite = useFavoritesStore((state) => state.isFavorite);
   const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
@@ -47,15 +50,15 @@ export default function ProductDetailScreen() {
   }
 
   return (
-    <ScrollView style={{ flex: 1, padding: 16 }}>
+    <ScrollView style={{ flex: 1, padding: spacing.lg }}>
       <View style={{ position: "relative" }}>
         <Image
           source={{ uri: product?.image }}
           style={{
             width: "100%",
             height: 300,
-            borderRadius: 8,
-            marginBottom: 16,
+            borderRadius: spacing.sm,
+            marginBottom: spacing.lg,
           }}
           resizeMode="contain"
         />
@@ -63,17 +66,17 @@ export default function ProductDetailScreen() {
           onPress={() => toggleFavorite(product?.id!)}
           style={{
             position: "absolute",
-            top: 16,
-            right: 16,
-            padding: 8,
-            borderRadius: 24,
-            backgroundColor: "rgba(255,255,255,0.9)",
+            top: spacing.lg,
+            right: spacing.lg,
+            padding: spacing.sm,
+            borderRadius: spacing.xl,
+            backgroundColor: favoriteBG,
           }}
         >
           <Text
             style={{
               color: favorite ? favoriteActive : favoriteInactive,
-              fontSize: 20,
+              fontSize: spacing.xlg,
             }}
           >
             {isFavorite(product?.id!) ? "♥" : "♡"}
@@ -83,36 +86,44 @@ export default function ProductDetailScreen() {
 
       <Text
         style={{
-          fontSize: 24,
+          fontSize: spacing.xl,
           fontWeight: "bold",
-          marginBottom: 8,
+          marginBottom: spacing.xl,
           color: text,
         }}
       >
         {product?.title}
       </Text>
-      <Text style={{ fontSize: 18, color: "#2e7d32", marginBottom: 8 }}>
+      <Text style={{ fontSize: spacing.xlg, color: price, marginBottom: 8 }}>
         ${product?.price.toFixed(2)}
       </Text>
-      <Text style={{ fontSize: 16, color: secondary, marginBottom: 12 }}>
+      <Text
+        style={{ fontSize: spacing.xl, color: secondary, marginBottom: 12 }}
+      >
         {product?.category}
       </Text>
-      <Text style={{ fontSize: 16, lineHeight: 22, color: secondary }}>
+      <Text
+        style={{
+          fontSize: spacing.lg,
+          lineHeight: spacing.xlg,
+          color: secondary,
+        }}
+      >
         {product?.description}
       </Text>
 
       <View
         style={{
-          marginTop: 16,
+          marginTop: spacing.lg,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ fontSize: 16, color: secondary }}>
+        <Text style={{ fontSize: spacing.lg, color: secondary }}>
           ⭐ {product?.rating.rate} / 5
         </Text>
-        <Text style={{ fontSize: 14, color: secondary }}>
+        <Text style={{ fontSize: spacing.lg, color: secondary }}>
           ({product?.rating.count} reviews)
         </Text>
       </View>
