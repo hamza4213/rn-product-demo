@@ -1,3 +1,4 @@
+import Error from "@/components/Error";
 import { spacing } from "@/constants/spacing";
 import {
   category,
@@ -27,7 +28,7 @@ import {
 
 export default function ProductDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: product, isLoading, error } = useProductDetail(id!);
+  const { data: product, isLoading, error, refetch } = useProductDetail(id!);
   const favorites = useFavoritesStore((state) => state.favorites);
   const favorite = favorites.includes(Number(id));
   const text = useThemeColor({}, "text");
@@ -53,9 +54,12 @@ export default function ProductDetailScreen() {
   }
   if (error) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: text }}>{t("product:errorDetails")}</Text>
-      </View>
+      <Error
+        text={t("product:errorDetails")}
+        onRetry={() => {
+          refetch();
+        }}
+      />
     );
   }
 

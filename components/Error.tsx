@@ -43,7 +43,7 @@ const Error = (props: props) => {
       >
         <Text
           style={{
-            color: backgroundColor,
+            color: textColor,
             fontWeight: "bold",
             fontSize: 16,
           }}
