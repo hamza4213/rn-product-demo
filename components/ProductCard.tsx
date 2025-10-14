@@ -4,9 +4,9 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export const ProductCard = ({ item }: { item: Product }) => {
-  const { toggleFavorite, isFavorite } = useFavoritesStore();
-  const favorite = isFavorite(item.id);
-
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
+  const favorite = favorites.includes(item.id);
   return (
     <View style={styles.card}>
       <Image
