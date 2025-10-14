@@ -1,10 +1,11 @@
 import { useThemeColor } from "@/hooks/use-theme-color";
-import { translate } from "@/src/localization/translate";
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 export default function RootLayout() {
   const primary = useThemeColor({}, "primary");
   const background = useThemeColor({}, "background");
+  const { t } = useTranslation();
 
   return (
     <Stack
@@ -18,13 +19,10 @@ export default function RootLayout() {
         },
       }}
     >
-      <Stack.Screen
-        name="product-list"
-        options={{ title: translate("app:title") }}
-      />
+      <Stack.Screen name="product-list" options={{ title: t("app:title") }} />
       <Stack.Screen
         name="productDetails"
-        options={{ title: translate("product:details") }}
+        options={{ title: t("product:details") }}
       />
     </Stack>
   );

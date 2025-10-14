@@ -19,13 +19,13 @@ import { TxKeyPath } from ".";
  *
  * Usage:
  * ```ts
- * import { translate } from "./i18n"
+ * import { t } from "./i18n"
  *
- * translate("hello", { name: "world" })
+ * t("hello", { name: "world" })
  * // => "Hello world!"
  * ```
  */
-export function translate(key: TxKeyPath, options?: TOptions): string {
+export function t(key: TxKeyPath, options?: TOptions): string {
   if (i18n.isInitialized) {
     return i18n.t(key, options);
   }
