@@ -2,8 +2,9 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { translate } from "@/src/localization/translate";
-import i18n from "i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Appearance,
   StyleSheet,
@@ -16,6 +17,7 @@ import {
 
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
+  const { i18n } = useTranslation();
   const [theme, setTheme] = useState(colorScheme ?? "light");
   const [language, setLanguage] = useState(
     i18n.language.startsWith("ur") ? "ur" : "en"
@@ -31,10 +33,10 @@ export default function SettingsScreen() {
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
-
-  const toggleLanguage = () => {
-    const newLang = language === "en" ? "ur" : "en";
-    i18n.changeLanguage(newLang);
+  const toggleLanguage = async () => {
+    const newLang = i18n.language === "en" ? "ur" : "en";
+    await i18n.changeLanguage(newLang);
+    await AsyncStorage.setItem("language", newLang);
     setLanguage(newLang);
   };
 
@@ -43,8 +45,6 @@ export default function SettingsScreen() {
       <ThemedText type="title" style={[styles.header, { color: textColor }]}>
         {translate("settings:title")}
       </ThemedText>
-
-      {/* Theme Toggle */}
       <View style={styles.row}>
         <Text style={[styles.label, { color: textColor }]}>
           {translate("common:theme")}
@@ -56,8 +56,6 @@ export default function SettingsScreen() {
           thumbColor={theme === "dark" ? "#f4f3f4" : "#f4f3f4"}
         />
       </View>
-
-      {/* Language Toggle */}
       <TouchableOpacity style={styles.row} onPress={toggleLanguage}>
         <Text style={[styles.label, { color: textColor }]}>
           {translate("common:language")}

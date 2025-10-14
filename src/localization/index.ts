@@ -1,9 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Localization from "expo-localization";
 import i18n from "i18next";
 import "intl-pluralrules";
 import { initReactI18next } from "react-i18next";
 import { I18nManager } from "react-native";
-
 // if English isn't your default language, move Translations to the appropriate language file.
 import en, { Translations } from "./translations/en";
 import ur from "./translations/ur";
@@ -42,16 +42,15 @@ if (locale?.languageTag && locale?.textDirection === "rtl") {
 
 export const initI18n = async () => {
   i18n.use(initReactI18next);
+  const normalizedLng =
+    locale?.languageTag?.split("-")[0] ?? fallbackLocale.split("-")[0];
 
+  const savedLang = await AsyncStorage.getItem("language");
   await i18n.init({
     resources,
-    lng: locale?.languageTag ?? fallbackLocale,
-    fallbackLng: fallbackLocale,
-    interpolation: {
-      escapeValue: false,
-    },
+    lng: savedLang ?? normalizedLng,
+    fallbackLng: "en",
   });
-
   return i18n;
 };
 
