@@ -16,6 +16,7 @@ import {
   View,
   useColorScheme,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SettingsScreen() {
   const { t } = useTranslation();
@@ -42,30 +43,34 @@ export default function SettingsScreen() {
   };
 
   return (
-    <ThemedView style={[styles.container, { backgroundColor: background }]}>
-      <ThemedText type="title" style={[styles.header, { color: text }]}>
-        {t("settings:title")}
-      </ThemedText>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ThemedView style={[styles.container, { backgroundColor: background }]}>
+        <ThemedText type="title" style={[styles.header, { color: text }]}>
+          {t("settings:title")}
+        </ThemedText>
 
-      <View style={row}>
-        <Text style={[styles.label, { color: text }]}>{t("common:theme")}</Text>
-        <Switch
-          value={theme === "dark"}
-          onValueChange={toggleTheme}
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor="#f4f3f4"
-        />
-      </View>
+        <View style={row}>
+          <Text style={[styles.label, { color: text }]}>
+            {t("common:theme")}
+          </Text>
+          <Switch
+            value={theme === "dark"}
+            onValueChange={toggleTheme}
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor="#f4f3f4"
+          />
+        </View>
 
-      <TouchableOpacity style={row} onPress={toggleLanguage}>
-        <Text style={[styles.label, { color: text }]}>
-          {t("common:language")}
-        </Text>
-        <Text style={[styles.value, { color: text }]}>
-          {language === "en" ? "English" : "اردو"}
-        </Text>
-      </TouchableOpacity>
-    </ThemedView>
+        <TouchableOpacity style={row} onPress={toggleLanguage}>
+          <Text style={[styles.label, { color: text }]}>
+            {t("common:language")}
+          </Text>
+          <Text style={[styles.value, { color: text }]}>
+            {language === "en" ? "English" : "اردو"}
+          </Text>
+        </TouchableOpacity>
+      </ThemedView>
+    </SafeAreaView>
   );
 }
 
