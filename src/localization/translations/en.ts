@@ -36,6 +36,7 @@ const en = {
     price: "Price",
     products: "Products",
     errorlist: "Error loading products list.",
+    errorDetails: "Error loading products details.",
   },
   settings: {
     title: "Settings",

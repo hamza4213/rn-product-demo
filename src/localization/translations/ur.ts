@@ -36,6 +36,7 @@ const ur = {
     price: "قیمت",
     products: "مصنوعات",
     errorlist: "مصنوعات کی فہرست لوڈ کرنے میں خرابی۔",
+    errorDetails: "مصنوعات کی تفصیلات لوڈ کرنے میں خرابی۔",
   },
   settings: {
     title: "ترتیبات",

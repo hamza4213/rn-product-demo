@@ -3,6 +3,7 @@ import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
   Image,
@@ -25,7 +26,7 @@ export default function ProductDetailScreen() {
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
   const isFavorite = useFavoritesStore((state) => state.isFavorite);
   const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
-
+  const { t } = useTranslation();
   useEffect(() => {
     loadFavorites();
   }, []);
@@ -40,7 +41,7 @@ export default function ProductDetailScreen() {
   if (error) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: text }}>Error loading products list.</Text>
+        <Text style={{ color: text }}>{t("product:errorDetails")}</Text>
       </View>
     );
   }
