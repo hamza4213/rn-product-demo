@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { row } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "i18next";
@@ -47,7 +48,7 @@ export default function SettingsScreen() {
         {t("settings:title")}
       </ThemedText>
 
-      <View style={styles.row}>
+      <View style={row}>
         <Text style={[styles.label, { color: textColor }]}>
           {t("common:theme")}
         </Text>
@@ -59,7 +60,7 @@ export default function SettingsScreen() {
         />
       </View>
 
-      <TouchableOpacity style={styles.row} onPress={toggleLanguage}>
+      <TouchableOpacity style={row} onPress={toggleLanguage}>
         <Text style={[styles.label, { color: textColor }]}>
           {t("common:language")}
         </Text>
@@ -74,12 +75,6 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   header: { fontSize: 24, fontWeight: "bold", marginBottom: 30 },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginVertical: 15,
-  },
   label: { fontSize: 16 },
   value: { fontSize: 16, fontWeight: "500" },
 });

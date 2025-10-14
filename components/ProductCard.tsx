@@ -1,3 +1,4 @@
+import { spacing } from "@/constants/spacing";
 import {
   category,
   description,
@@ -14,7 +15,14 @@ import { Product } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { Link } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export const ProductCard = ({ item }: { item: Product }) => {
   const favorites = useFavoritesStore((state) => state.favorites);
@@ -27,7 +35,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
   const favoriteInactive = useThemeColor({}, "favoriteInactive");
   return (
     <Link href={`/productDetails?id=${item.id}`} asChild>
-      <TouchableOpacity style={{ marginBottom: 16 }}>
+      <Pressable style={{ marginBottom: spacing.lg }}>
         <View style={[styles.card, { backgroundColor: background }]}>
           <Image
             source={{ uri: item.image }}
@@ -68,7 +76,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </Link>
   );
 };
