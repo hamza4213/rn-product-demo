@@ -1,5 +1,15 @@
 import { spacing } from "@/constants/spacing";
-import { favoriteButton, favoriteText, img, title } from "@/constants/styles";
+import {
+  category,
+  description,
+  favoriteButton,
+  favoriteText,
+  img,
+  priceStyle,
+  rating,
+  row,
+  title,
+} from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -10,7 +20,6 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -60,7 +69,6 @@ export default function ProductDetailScreen() {
         />
         <TouchableOpacity
           onPress={() => toggleFavorite(product?.id!)}
-          // style={favoriteButton}
           style={[
             favoriteButton,
             {
@@ -77,40 +85,26 @@ export default function ProductDetailScreen() {
       <Text style={[title, { color: text, fontSize: spacing.xlg }]}>
         {product?.title}
       </Text>
-      <Text style={{ fontSize: spacing.xlg, color: price, marginBottom: 8 }}>
+      <Text
+        style={[
+          priceStyle,
+          { fontSize: spacing.xlg, color: price, marginTop: spacing.lg },
+        ]}
+      >
         ${product?.price.toFixed(2)}
       </Text>
-      <Text
-        style={{ fontSize: spacing.xl, color: secondary, marginBottom: 12 }}
-      >
-        {product?.category}
-      </Text>
-      <Text
-        style={{
-          fontSize: spacing.lg,
-          lineHeight: spacing.xlg,
-          color: secondary,
-        }}
-      >
+      <Text style={[category, { color: secondary }]}>{product?.category}</Text>
+      <Text style={[description, { color: secondary }]}>
         {product?.description}
       </Text>
-
-      <View
-        style={{
-          marginTop: spacing.lg,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ fontSize: spacing.lg, color: secondary }}>
+      <View style={row}>
+        <Text style={[rating, { color: secondary }]}>
           ⭐ {product?.rating.rate} / 5
         </Text>
-        <Text style={{ fontSize: spacing.lg, color: secondary }}>
+        <Text style={[rating, { color: secondary }]}>
           ({product?.rating.count} {t("common:reviews")})
         </Text>
       </View>
     </ScrollView>
   );
 }
-const styles = StyleSheet.create({});

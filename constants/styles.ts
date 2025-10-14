@@ -23,3 +23,25 @@ export const title: TextStyle = {
   fontSize: spacing.lg,
   fontWeight: "600",
 };
+export const category: TextStyle = {
+  fontSize: spacing.lg,
+  marginVertical: spacing.sm,
+};
+export const description: TextStyle = {
+  fontSize: spacing.xlg,
+  marginBottom: spacing.sm,
+};
+export const row: ViewStyle = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: spacing.xs,
+  marginTop: spacing.md,
+};
+export const rating: TextStyle = {
+  fontSize: spacing.lg,
+  fontWeight: "bold",
+};
+export const priceStyle: TextStyle = {
+  fontWeight: "bold",
+};

@@ -1,4 +1,14 @@
-import { favoriteButton, favoriteText, img, title } from "@/constants/styles";
+import {
+  category,
+  description,
+  favoriteButton,
+  favoriteText,
+  img,
+  priceStyle,
+  rating,
+  row,
+  title,
+} from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { Product } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -29,22 +39,17 @@ export const ProductCard = ({ item }: { item: Product }) => {
             {item.title}
           </Text>
 
-          <Text style={[styles.category, { color: secondary }]}>
-            {item.category}
-          </Text>
+          <Text style={[category, { color: secondary }]}>{item.category}</Text>
 
-          <Text
-            style={[styles.description, { color: secondary }]}
-            numberOfLines={2}
-          >
+          <Text style={[description, { color: secondary }]} numberOfLines={2}>
             {item.description}
           </Text>
 
-          <View style={styles.row}>
-            <Text style={[styles.rating, { color: secondary }]}>
+          <View style={row}>
+            <Text style={[rating, { color: secondary }]}>
               ⭐ {item.rating.rate} ({item.rating.count})
             </Text>
-            <Text style={[styles.price, { color: text }]}>
+            <Text style={[priceStyle, { color: text }]}>
               ${item.price.toFixed(2)}
             </Text>
           </View>
@@ -78,25 +83,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 3,
-  },
-  category: {
-    fontSize: 13,
-    marginBottom: 6,
-  },
-  description: {
-    fontSize: 13,
-    marginBottom: 10,
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 6,
-  },
-  rating: {
-    fontSize: 13,
-  },
-  price: {
-    fontWeight: "bold",
   },
 });
