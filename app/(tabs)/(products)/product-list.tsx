@@ -2,11 +2,16 @@ import { ProductCard } from "@/components/ProductCard";
 import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { Link } from "expo-router";
+import { useEffect } from "react";
 import { FlatList, TouchableOpacity, View } from "react-native";
 
 export default function ProductListScreen() {
   const { data, isLoading, error } = useProducts();
-  const { favorites, toggleFavorite, isFavorite } = useFavoritesStore();
+  const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <FlatList
