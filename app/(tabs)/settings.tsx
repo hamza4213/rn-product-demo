@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { spacing } from "@/constants/spacing";
 import { row } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -39,7 +40,7 @@ export default function SettingsScreen() {
     const newLang = i18n.language === "en" ? "ur" : "en";
     await i18n.changeLanguage(newLang);
     await AsyncStorage.setItem("language", newLang);
-    setLanguage(newLang); // local update
+    setLanguage(newLang);
   };
 
   return (
@@ -73,8 +74,8 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  header: { fontSize: 24, fontWeight: "bold", marginBottom: 30 },
-  label: { fontSize: 16 },
-  value: { fontSize: 16, fontWeight: "500" },
+  container: { flex: 1, padding: spacing.xlg },
+  header: { fontSize: spacing.xl, fontWeight: "bold", marginBottom: 30 },
+  label: { fontSize: spacing.lg },
+  value: { fontSize: spacing.lg, fontWeight: "500" },
 });

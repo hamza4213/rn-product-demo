@@ -1,3 +1,4 @@
+import Error from "@/components/Error";
 import { ProductCard } from "@/components/ProductCard";
 import { spacing } from "@/constants/spacing";
 import { useThemeColor } from "@/hooks/use-theme-color";
@@ -5,13 +6,12 @@ import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 
 export default function ProductListScreen() {
-  const { data, isLoading, error } = useProducts();
+  const { data, isLoading, error, refetch } = useProducts();
   const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
   const backgroundColor = useThemeColor({}, "background");
-  const textColor = useThemeColor({}, "text");
   const { t } = useTranslation();
   useEffect(() => {
     loadFavorites();
@@ -23,11 +23,15 @@ export default function ProductListScreen() {
       </View>
     );
   }
+
   if (error) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: textColor }}>{t("product:errorlist")}</Text>
-      </View>
+      <Error
+        text={t("product:errorlist")}
+        onRetry={() => {
+          refetch();
+        }}
+      />
     );
   }
   return (

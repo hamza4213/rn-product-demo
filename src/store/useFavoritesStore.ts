@@ -17,7 +17,6 @@ export const useFavoritesStore = create<FavoriteStore>((set, get) => ({
   toggleFavorite: async (id) => {
     const { favorites } = get();
     let updatedFavorites: number[];
-
     if (favorites.includes(id)) {
       Toast.success("Removed from favorites!");
       updatedFavorites = favorites.filter((item) => item !== id);
@@ -25,10 +24,7 @@ export const useFavoritesStore = create<FavoriteStore>((set, get) => ({
       Toast.success("Added to favorites!");
       updatedFavorites = [...favorites, id];
     }
-
     set({ favorites: updatedFavorites });
-
-    // Save to AsyncStorage
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFavorites));
     } catch (error) {

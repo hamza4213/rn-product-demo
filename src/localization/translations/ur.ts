@@ -7,6 +7,7 @@ const ur = {
     darkMode: "ڈارک موڈ",
     theme: "تھیم",
     reviews: "جائزے",
+    retry: "دوبارہ کوشش کریں",
   },
   welcomeScreen: {
     postscript:

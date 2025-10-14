@@ -7,6 +7,7 @@ const en = {
     darkMode: "Dark Mode",
     theme: "Theme",
     reviews: "reviews",
+    retry: "Retry",
   },
   welcomeScreen: {
     postscript:
