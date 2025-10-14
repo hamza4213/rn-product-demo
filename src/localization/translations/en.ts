@@ -6,6 +6,7 @@ const en = {
     language: "Language",
     darkMode: "Dark Mode",
     theme: "Theme",
+    reviews: "reviews",
   },
   welcomeScreen: {
     postscript:

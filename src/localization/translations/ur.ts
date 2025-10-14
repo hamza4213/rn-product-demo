@@ -6,6 +6,7 @@ const ur = {
     language: "زبان",
     darkMode: "ڈارک موڈ",
     theme: "تھیم",
+    reviews: "جائزے",
   },
   welcomeScreen: {
     postscript:

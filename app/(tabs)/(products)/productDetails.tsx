@@ -124,7 +124,7 @@ export default function ProductDetailScreen() {
           ⭐ {product?.rating.rate} / 5
         </Text>
         <Text style={{ fontSize: spacing.lg, color: secondary }}>
-          ({product?.rating.count} reviews)
+          ({product?.rating.count} {t("common:reviews")})
         </Text>
       </View>
     </ScrollView>
