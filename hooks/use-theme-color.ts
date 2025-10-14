@@ -32,5 +32,7 @@ export const useThemeColors = () => {
     favoriteInactive: useThemeColor({}, "favoriteInactive"),
     price: useThemeColor({}, "price"),
     shadowColor: useThemeColor({}, "shadowColor"),
+    falseColor: useThemeColor({}, "false"),
+    trueColor: useThemeColor({}, "true"),
   };
 };

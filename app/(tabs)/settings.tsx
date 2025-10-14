@@ -25,7 +25,7 @@ export default function SettingsScreen() {
   const [language, setLanguage] = useState(
     i18n.language.startsWith("ur") ? "ur" : "en"
   );
-  const { background, text } = useThemeColors();
+  const { background, text, trueColor, falseColor } = useThemeColors();
 
   useEffect(() => {
     Appearance.setColorScheme(theme);
@@ -56,8 +56,8 @@ export default function SettingsScreen() {
           <Switch
             value={theme === "dark"}
             onValueChange={toggleTheme}
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor="#f4f3f4"
+            trackColor={{ false: falseColor, true: trueColor }}
+            thumbColor={background}
           />
         </View>
 
@@ -76,7 +76,11 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: spacing.xlg },
-  header: { fontSize: spacing.xl, fontWeight: "bold", marginBottom: 30 },
+  header: {
+    fontSize: spacing.xl,
+    fontWeight: "bold",
+    marginBottom: spacing.xxl,
+  },
   label: { fontSize: spacing.lg },
   value: { fontSize: spacing.lg, fontWeight: "500" },
 });
