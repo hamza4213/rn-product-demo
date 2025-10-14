@@ -42,7 +42,7 @@ export const Colors = {
     favoriteActive: "#FF6B81",
     favoriteInactive: "#333333",
     primary: "#0A84FF",
-    favoriteButtonBg: "rgba(255,255,255,0.9)",
+    favoriteButtonBg: "rgba(0,0,0,0.7)",
     price: "#81c784",
   },
 };

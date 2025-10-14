@@ -1,4 +1,5 @@
 import { spacing } from "@/constants/spacing";
+import { favoriteButton, favoriteText, img } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProductDetail } from "@/src/api/hooks/useProductDetails";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -9,6 +10,7 @@ import {
   ActivityIndicator,
   Image,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -24,7 +26,6 @@ export default function ProductDetailScreen() {
   const secondary = useThemeColor({}, "textSecondary");
   const favoriteActive = useThemeColor({}, "favoriteActive");
   const favoriteInactive = useThemeColor({}, "favoriteInactive");
-  const favoriteBG = useThemeColor({}, "favoriteButtonBg");
   const price = useThemeColor({}, "price");
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
   const isFavorite = useFavoritesStore((state) => state.isFavorite);
@@ -54,31 +55,20 @@ export default function ProductDetailScreen() {
       <View style={{ position: "relative" }}>
         <Image
           source={{ uri: product?.image }}
-          style={{
-            width: "100%",
-            height: 300,
-            borderRadius: spacing.sm,
-            marginBottom: spacing.lg,
-          }}
+          style={[img, { height: 300 }]}
           resizeMode="contain"
         />
         <TouchableOpacity
           onPress={() => toggleFavorite(product?.id!)}
-          style={{
-            position: "absolute",
-            top: spacing.lg,
-            right: spacing.lg,
-            padding: spacing.sm,
-            borderRadius: spacing.xl,
-            backgroundColor: favoriteBG,
-          }}
+          // style={favoriteButton}
+          style={[
+            favoriteButton,
+            {
+              backgroundColor: favorite ? favoriteActive : favoriteInactive,
+            },
+          ]}
         >
-          <Text
-            style={{
-              color: favorite ? favoriteActive : favoriteInactive,
-              fontSize: spacing.xlg,
-            }}
-          >
+          <Text style={[favoriteText, { color: text }]}>
             {isFavorite(product?.id!) ? "♥" : "♡"}
           </Text>
         </TouchableOpacity>
@@ -130,3 +120,4 @@ export default function ProductDetailScreen() {
     </ScrollView>
   );
 }
+const styles = StyleSheet.create({});

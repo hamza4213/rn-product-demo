@@ -1,3 +1,4 @@
+import { favoriteButton, favoriteText, img } from "@/constants/styles";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { Product } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
@@ -20,7 +21,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
         <View style={[styles.card, { backgroundColor: background }]}>
           <Image
             source={{ uri: item.image }}
-            style={styles.image}
+            style={[img, { height: 300 }]}
             resizeMode="contain"
           />
 
@@ -50,14 +51,14 @@ export const ProductCard = ({ item }: { item: Product }) => {
 
           <TouchableOpacity
             style={[
-              styles.favoriteButton,
+              favoriteButton,
               {
                 backgroundColor: favorite ? favoriteActive : favoriteInactive,
               },
             ]}
             onPress={() => toggleFavorite(item.id)}
           >
-            <Text style={[styles.favoriteText, { color: text }]}>
+            <Text style={[favoriteText, { color: text }]}>
               {favorite ? "♥" : "♡"}
             </Text>
           </TouchableOpacity>
@@ -78,25 +79,16 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
-  image: {
-    width: "100%",
-    height: 180,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
   title: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
   },
   category: {
-    color: "#777",
     fontSize: 13,
     marginBottom: 6,
   },
   description: {
     fontSize: 13,
-    color: "#555",
     marginBottom: 10,
   },
   row: {
@@ -107,27 +99,8 @@ const styles = StyleSheet.create({
   },
   rating: {
     fontSize: 13,
-    color: "#444",
   },
   price: {
     fontWeight: "bold",
-    color: "#000",
-  },
-  favoriteButton: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    backgroundColor: "#eee",
-    borderRadius: 20,
-    width: 36,
-    height: 36,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  favoriteActive: {
-    backgroundColor: "#ffccd5",
-  },
-  favoriteText: {
-    fontSize: 18,
   },
 });
