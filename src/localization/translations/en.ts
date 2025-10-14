@@ -4,6 +4,8 @@ const en = {
     cancel: "Cancel",
     back: "Back",
     settings: "Settings",
+    language: "Language",
+    darkMode: "Dark Mode",
   },
   welcomeScreen: {
     postscript:

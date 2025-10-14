@@ -4,6 +4,8 @@ const ur = {
     cancel: "منسوخ کریں",
     back: "واپس جائیں",
     settings: "ترتیبات",
+    language: "زبان",
+    darkMode: "ڈارک موڈ",
   },
   welcomeScreen: {
     postscript:
