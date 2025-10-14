@@ -31,6 +31,7 @@ const en = {
     details: "Product Details",
     addToCart: "Add to Cart",
     price: "Price",
+    products: "Products",
   },
 };
 

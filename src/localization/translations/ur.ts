@@ -31,6 +31,7 @@ const ur = {
     details: "پروڈکٹ کی تفصیلات",
     addToCart: "کارٹ میں شامل کریں",
     price: "قیمت",
+    products: "مصنوعات",
   },
 };
 
