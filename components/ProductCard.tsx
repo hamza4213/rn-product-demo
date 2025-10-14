@@ -33,10 +33,16 @@ export const ProductCard = ({ item }: { item: Product }) => {
   const secondary = useThemeColor({}, "textSecondary");
   const favoriteActive = useThemeColor({}, "favoriteActive");
   const favoriteInactive = useThemeColor({}, "favoriteInactive");
+  const shadowColor = useThemeColor({}, "shadowColor");
   return (
     <Link href={`/productDetails?id=${item.id}`} asChild>
       <Pressable style={{ marginBottom: spacing.lg }}>
-        <View style={[styles.card, { backgroundColor: background }]}>
+        <View
+          style={[
+            styles.card,
+            { backgroundColor: background, shadowColor: shadowColor },
+          ]}
+        >
           <Image
             source={{ uri: item.image }}
             style={[img, { height: 300 }]}
@@ -83,13 +89,12 @@ export const ProductCard = ({ item }: { item: Product }) => {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 12,
-    padding: 12,
-    marginVertical: 8,
-    marginHorizontal: 10,
-    shadowColor: "#000",
+    borderRadius: spacing.md,
+    padding: spacing.md,
+    marginVertical: spacing.sm,
+    marginHorizontal: spacing.sm,
     shadowOpacity: 0.1,
-    shadowRadius: 6,
+    shadowRadius: spacing.md,
     elevation: 3,
   },
 });
