@@ -1,4 +1,5 @@
 import { useThemeColor } from "@/hooks/use-theme-color";
+import { translate } from "@/src/localization/translate";
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
@@ -19,15 +20,11 @@ export default function RootLayout() {
     >
       <Stack.Screen
         name="product-list"
-        options={{
-          title: "Hamza Store",
-        }}
+        options={{ title: translate("app:title") }}
       />
       <Stack.Screen
         name="productDetails"
-        options={{
-          title: "Product Details",
-        }}
+        options={{ title: translate("product:details") }}
       />
     </Stack>
   );
