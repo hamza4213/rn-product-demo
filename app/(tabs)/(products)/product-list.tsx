@@ -2,7 +2,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
 import { useEffect } from "react";
-import { FlatList, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 export default function ProductListScreen() {
   const { data, isLoading, error } = useProducts();
@@ -11,6 +11,20 @@ export default function ProductListScreen() {
   useEffect(() => {
     loadFavorites();
   }, []);
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#000" />
+      </View>
+    );
+  }
+  if (error) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Error loading products list.</Text>
+      </View>
+    );
+  }
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <FlatList
