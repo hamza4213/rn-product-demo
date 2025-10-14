@@ -3,9 +3,9 @@ const en = {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
-    settings: "Settings",
     language: "Language",
     darkMode: "Dark Mode",
+    theme: "Theme",
   },
   welcomeScreen: {
     postscript:
@@ -35,6 +35,9 @@ const en = {
     addToCart: "Add to Cart",
     price: "Price",
     products: "Products",
+  },
+  settings: {
+    title: "Settings",
   },
 };
 

@@ -29,7 +29,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: translate("common:settings"),
+          title: translate("settings:title"),
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="settings.fill" color={color} />
           ),

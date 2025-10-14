@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { translate } from "@/src/localization/translate";
-import i18next from "i18next";
+import i18n from "i18next";
 import React, { useEffect, useState } from "react";
 import {
   Appearance,
@@ -18,7 +18,7 @@ export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const [theme, setTheme] = useState(colorScheme ?? "light");
   const [language, setLanguage] = useState(
-    i18next.language.startsWith("ur") ? "ur" : "en"
+    i18n.language.startsWith("ur") ? "ur" : "en"
   );
 
   const backgroundColor = useThemeColor({}, "background");
@@ -41,13 +41,13 @@ export default function SettingsScreen() {
   return (
     <ThemedView style={[styles.container, { backgroundColor }]}>
       <ThemedText type="title" style={[styles.header, { color: textColor }]}>
-        {translate("settings:title", "Settings")}
+        {translate("settings:title")}
       </ThemedText>
 
       {/* Theme Toggle */}
       <View style={styles.row}>
         <Text style={[styles.label, { color: textColor }]}>
-          {translate("settings:theme", "Dark Mode")}
+          {translate("common:theme")}
         </Text>
         <Switch
           value={theme === "dark"}
@@ -60,7 +60,7 @@ export default function SettingsScreen() {
       {/* Language Toggle */}
       <TouchableOpacity style={styles.row} onPress={toggleLanguage}>
         <Text style={[styles.label, { color: textColor }]}>
-          {translate("settings:language", "Language")}
+          {translate("common:language")}
         </Text>
         <Text style={[styles.value, { color: textColor }]}>
           {language === "en" ? "English" : "اردو"}

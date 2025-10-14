@@ -3,9 +3,9 @@ const ur = {
     ok: "ٹھیک ہے!",
     cancel: "منسوخ کریں",
     back: "واپس جائیں",
-    settings: "ترتیبات",
     language: "زبان",
     darkMode: "ڈارک موڈ",
+    theme: "تھیم",
   },
   welcomeScreen: {
     postscript:
@@ -35,6 +35,9 @@ const ur = {
     addToCart: "کارٹ میں شامل کریں",
     price: "قیمت",
     products: "مصنوعات",
+  },
+  settings: {
+    title: "ترتیبات",
   },
 };
 
