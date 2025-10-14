@@ -1,0 +1,114 @@
+import Error from "@/components/Error";
+import { spacing } from "@/constants/spacing";
+import {
+  category,
+  description,
+  favoriteButton,
+  favoriteText,
+  img,
+  priceStyle,
+  rating,
+  row,
+  title,
+} from "@/constants/styles";
+import { useThemeColor } from "@/hooks/use-theme-color";
+import { useProductDetail } from "@/src/api/hooks/useProductDetails";
+import { useFavoritesStore } from "@/src/store/useFavoritesStore";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+export default function ProductDetailScreen() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { data: product, isLoading, error, refetch } = useProductDetail(id!);
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const favorite = favorites.includes(Number(id));
+  const text = useThemeColor({}, "text");
+  const background = useThemeColor({}, "card");
+  const secondary = useThemeColor({}, "textSecondary");
+  const favoriteActive = useThemeColor({}, "favoriteActive");
+  const favoriteInactive = useThemeColor({}, "favoriteInactive");
+  const price = useThemeColor({}, "price");
+  const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite);
+  const isFavorite = useFavoritesStore((state) => state.isFavorite);
+  const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
+  const { t } = useTranslation();
+  useEffect(() => {
+    loadFavorites();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={background} />
+      </View>
+    );
+  }
+  if (error) {
+    return (
+      <Error
+        text={t("product:errorDetails")}
+        onRetry={() => {
+          refetch();
+        }}
+      />
+    );
+  }
+
+  return (
+    <ScrollView style={{ flex: 1, padding: spacing.lg }}>
+      <View style={{ position: "relative" }}>
+        <Image
+          source={{ uri: product?.image }}
+          style={[img, { height: 300 }]}
+          resizeMode="contain"
+        />
+        <TouchableOpacity
+          onPress={() => toggleFavorite(product?.id!)}
+          style={[
+            favoriteButton,
+            {
+              backgroundColor: favorite ? favoriteActive : favoriteInactive,
+            },
+          ]}
+        >
+          <Text style={[favoriteText, { color: text }]}>
+            {isFavorite(product?.id!) ? "♥" : "♡"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <Text style={[title, { color: text, fontSize: spacing.xlg }]}>
+        {product?.title}
+      </Text>
+      <Text
+        style={[
+          priceStyle,
+          { fontSize: spacing.xlg, color: price, marginTop: spacing.lg },
+        ]}
+      >
+        ${product?.price.toFixed(2)}
+      </Text>
+      <Text style={[category, { color: secondary }]}>{product?.category}</Text>
+      <Text style={[description, { color: secondary }]}>
+        {product?.description}
+      </Text>
+      <View style={row}>
+        <Text style={[rating, { color: secondary }]}>
+          ⭐ {product?.rating.rate} / 5
+        </Text>
+        <Text style={[rating, { color: secondary }]}>
+          ({product?.rating.count} {t("common:reviews")})
+        </Text>
+      </View>
+    </ScrollView>
+  );
+}
