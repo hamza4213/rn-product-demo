@@ -3,7 +3,7 @@ import { spacing } from "@/constants/spacing";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { useProducts } from "@/src/api/hooks/useProducts";
 import { useFavoritesStore } from "@/src/store/useFavoritesStore";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
@@ -36,7 +36,11 @@ export default function ProductListScreen() {
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <ProductCard item={item} />}
+        renderItem={({ item }) => (
+          <React.Fragment key={item.id}>
+            <ProductCard item={item} />
+          </React.Fragment>
+        )}
       />
     </View>
   );
