@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Toast } from "toastify-react-native";
 import { create } from "zustand";
 
 type FavoriteStore = {
@@ -18,8 +19,10 @@ export const useFavoritesStore = create<FavoriteStore>((set, get) => ({
     let updatedFavorites: number[];
 
     if (favorites.includes(id)) {
+      Toast.success("Removed from favorites!");
       updatedFavorites = favorites.filter((item) => item !== id);
     } else {
+      Toast.success("Added to favorites!");
       updatedFavorites = [...favorites, id];
     }
 
