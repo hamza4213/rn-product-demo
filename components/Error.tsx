@@ -34,7 +34,7 @@ const Error = (props: props) => {
       </Text>
 
       <TouchableOpacity
-        onPress={onRetry}
+        // onPress={onRetry}
         style={{
           backgroundColor: backgroundColor,
           paddingHorizontal: spacing.xlg,
