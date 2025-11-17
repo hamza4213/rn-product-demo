@@ -36,6 +36,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="tailwind"
+        options={{
+          title: t("settings:title"),
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="settings.fill" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
